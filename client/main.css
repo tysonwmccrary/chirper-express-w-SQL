@@ -1,0 +1,11 @@
+body {
+    background-color: lightblue;
+}
+
+#chirp-field {
+    border-width: 6px;
+}
+
+#chirp-btn {
+    color: black;
+}
