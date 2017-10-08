@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var app = express();
 
+//Connect mysql database to index.js.
 var pool = mysql.createPool({
     connectionLimit: 10,
     host: "localhost",
@@ -12,22 +13,23 @@ var pool = mysql.createPool({
     database: "chirper"
 });
 
+//Direct index.js to client folder to perform main.js code.
 var clientPath = path.join(__dirname, "../client");
 // var dataPath = path.join(__dirname, 'data.json');
 
-app.use(express.static(clientPath)); //this will read all files in the client path.
-app.use(bodyParser.json()); //turns the json data into javascript.
+app.use(express.static(clientPath)); //This will read all files in the client path.
+app.use(bodyParser.json()); //Turns the json data into javascript.
 
-app.route("/api/chirps") //sends and recieves information. Used for Ajax on main.js.
-    .get(function (request, response) { //gets the information from SQL.
-        rows("GetAllChirps") //this is the name of the procedure use in SQL.
-            .then(function (chirps) { //sends a request from the handler/variable chirps.
-                response.send(chirps);
+app.route("/api/Allchirps") //Sends and recieves information. Used from Ajax on main.js.
+    .get(function (request, response) { //Gets the information from SQL.
+        rows("GetChirps") //This is the name of the procedure use in SQL.
+            .then(function (Allchirps) { //Finds the table Allchirps and responds the table.
+                response.send(Allchirps);
             }).catch(function (error) {
                 console.log(error);
                 response.sendStatus(500);
             });
-    }).post(function (request, response) { //post the information into the database.
+    }).post(function (request, response) { //Post the information into the database.
         var newChirp = request.body;  //creates a new chirp to be stored into database.
         row("InsertChirp", [newChirp.userid, newChirp.message]) //this is the name of the procedure use in SQL with parameters.
             .then(function (id) {
@@ -39,17 +41,17 @@ app.route("/api/chirps") //sends and recieves information. Used for Ajax on main
             });
     });
 
-app.route("/api/chirps/:id")  //Updates the database in SQL.
+app.route("/api/Allchirps/:id")  //This routes the url particularly to id in Allchirps table.
     .get(function (request, response) {
-        row("GetSingleChirp", [request.params.id]) //this is the name of the procedure use in SQL.
-            .then(function (chirp) {
-                response.send(chirp);
+        row("GetSingleChirp", [request.params.id]) //This is the name of the procedure use in SQL, particularly to id.
+            .then(function (Allchirps) {
+                response.send(Allchirps);
             }).catch(function (error) {
                 console.log(error);
                 response.sendStatus(500);
             });
     }).put(function (request, response) {
-        empty("UpdateChirp", [request.params.id, request.body.message]) //this is the name of the procedure use in SQL.
+        empty("UpdateChirp", [request.params.id, request.body.message]) //This is the name of the procedure use in SQL.
             .then(function () {
                 response.sendStatus(204);
             }).catch(function (error) {
@@ -57,7 +59,7 @@ app.route("/api/chirps/:id")  //Updates the database in SQL.
                 response.sendStatus(500);
             });
     }).delete(function (request, response) {
-        empty("DeleteChirp", [request.params.id]) //this is the name of the procedure use in SQL.
+        empty("DeleteChirp", [request.params.id]) //This is the name of the procedure use in SQL, particularly to id.
             .then(function () {
                 response.sendStatus(204);
             }).catch(function (error) {
@@ -66,8 +68,8 @@ app.route("/api/chirps/:id")  //Updates the database in SQL.
             });
     });
 
-app.route("/api/users").get(function (request, response) {
-    rows("GetUsers") //this is the name of the procedure use in SQL.
+app.route("/api/users").get(function (request, response) { //This routes the url to the users Table in the chirper Database.
+    rows("GetUsers") //This is the name of the procedure use in SQL.
         .then(function (users) {
             response.send(users);
         }).catch(function (error) {

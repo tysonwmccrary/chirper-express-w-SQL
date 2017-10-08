@@ -1,28 +1,33 @@
+//Create Variables to store inside each id with the main.css.
 var $chirpButton = $('#chirp-btn');
 var $chirpField = $('#chirp-field');
 var $chirpList = $('#chirp-list');
 var $userSelector = $('#user-selector');
 
+//Attaches an event handler function to disable chirp button when text field is empty.
 $chirpField.on('input', function () {
     var isEmpty = $chirpField.val().length === 0;
     $chirpButton.prop('disabled', isEmpty);
 });
 $chirpButton.click(postChirp);
 
+//Create function postChirp with variable chirp as an object.
 function postChirp() {
-    var chirp = {
+    var chirp = { //message and userid comes from the chirp database.
         message: $chirpField.val(),
         userid: $userSelector.val()
     };
     console.log(chirp);
 
+    //And use ajax to enteract with the SQL chirp database.
+
+    //This will post the new chirps into the SQL chirp database.
     $.ajax({
         method: 'POST',
-        url: '/api/chirps',
+        url: '/api/Allchirps',
         contentType: 'application/json',
         data: JSON.stringify(chirp)
-    }).then(function (success) {
-        // successfully POST new data to the server
+    }).then(function (success) { // successfully POST new data to the server
         $chirpField.val('');
         $chirpButton.prop('disabled', true);
         getChirps();
@@ -31,15 +36,16 @@ function postChirp() {
     });
 }
 
+//This will recieve the chirps for the SQL chirper database.
 function getChirps() {
     $.ajax({
         method: 'GET',
-        url: '/api/chirps'
-    }).then(function (chirps) {
+        url: '/api/Allchirps'
+    }).then(function (Allchirps) {
         //console.log(chirps);
         $chirpList.empty();
-        for (var i = 0; i < chirps.length; i++) {
-            addChripDiv(chirps[i]);
+        for (var i = 0; i < Allchirps.length; i++) {
+            addChripDiv(Allchirps[i]);
         }
     }, function (error) {
         console.log(error);
@@ -57,21 +63,26 @@ function addChirpDiv(chirp) {
         deleteChirp(chirp.id);
     });
 
+    //Gives the value of the text "What the text actually is".
     $message.text(chirp.message);
     $user.text(chirp.username);
     $timestamp.text(new Date(chirp.timestamp).toLocaleString());
 
+    //Places the variables into the chirpDiv.
     $message.appendTo($chirpDiv);
     $user.appendTo($chirpDiv);
     $timestamp.appendTo($chirpDiv);
     $delButton.appendTo($chirpDiv);
 
+    //Places the chirpDiv into the chirpList Div.
     $chirpDiv.appendTo($chirpList);
 }
+
+//Use ajax to delete chirps for the SQL chirper database, Allchirps Table.
 function deleteChirp(id) {
     $.ajax({
         method: 'DELETE',
-        url: '/api/chirps/' + id
+        url: '/api/Allchirps/' + id
     }).then(function () {
         getChirps();
     }, function (error) {
@@ -79,6 +90,7 @@ function deleteChirp(id) {
     });
 }
 
+//Use ajax to use the user that are in SQL chirper database, User Table.
 function populateUsers() {
     $.ajax({
         method: 'GET',

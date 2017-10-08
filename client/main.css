@@ -9,3 +9,15 @@ body {
 #chirp-btn {
     color: black;
 }
+
+#chirp-list {
+    background-color: white;
+}
+
+#user-selector {
+    background-color: lightslategray;
+}
+
+.chirp-box {
+    background-color: orange;
+}
