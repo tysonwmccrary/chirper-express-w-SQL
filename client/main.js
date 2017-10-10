@@ -41,11 +41,11 @@ function getChirps() {
     $.ajax({
         method: 'GET',
         url: '/api/Allchirps'
-    }).then(function (Allchirps) {
+    }).then(function (chirp) {
         //console.log(chirps);
         $chirpList.empty();
-        for (var i = 0; i < Allchirps.length; i++) {
-            addChripDiv(Allchirps[i]);
+        for (var i = 0; i < chirp.length; i++) {
+            addChirpDiv(chirp[i]);
         }
     }, function (error) {
         console.log(error);
@@ -96,7 +96,7 @@ function populateUsers() {
         method: 'GET',
         url: '/api/users'
     }).then(function (users) {
-        for (var i = 0; i < users.lenght; i++) {
+        for (var i = 0; i < users.length; i++) {
             var $userOption = $('<option value="' + users[i].id + '">' + users[i].name + '</option>');
             $userSelector.append($userOption);
         }

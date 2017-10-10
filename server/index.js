@@ -43,7 +43,7 @@ app.route("/api/Allchirps") //Sends and recieves information. Used from Ajax on 
 
 app.route("/api/Allchirps/:id")  //This routes the url particularly to id in Allchirps table.
     .get(function (request, response) {
-        row("GetSingleChirp", [request.params.id]) //This is the name of the procedure use in SQL, particularly to id.
+        row("GetSingleChirp", [request.params.id]) //This is the name of the procedure use in SQL, particularly to id and is from this specific row.
             .then(function (Allchirps) {
                 response.send(Allchirps);
             }).catch(function (error) {
@@ -69,7 +69,7 @@ app.route("/api/Allchirps/:id")  //This routes the url particularly to id in All
     });
 
 app.route("/api/users").get(function (request, response) { //This routes the url to the users Table in the chirper Database.
-    rows("GetUsers") //This is the name of the procedure use in SQL.
+    rows("GetUsers") //This is the name of the procedure use in SQL, and will be updated in that paricular row.
         .then(function (users) {
             response.send(users);
         }).catch(function (error) {
