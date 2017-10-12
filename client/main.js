@@ -58,7 +58,7 @@ function addChirpDiv(chirp) {
     var $message = $('<p></p>');
     var $user = $('<h4></h4>');
     var $timestamp = $('<h5></h5>');
-    var $delButton = $('<button class="delete-button fancy-button red">Delete</button>');
+    var $delButton = $('<button class="delete-button btn-danger btn-sm">Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>');
     $delButton.click(function () {
         deleteChirp(chirp.id);
     });

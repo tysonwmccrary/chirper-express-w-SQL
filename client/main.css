@@ -1,3 +1,31 @@
+@font-face {
+  font-family: 'Courier New Bold', 'BEBAS___', 'Bangers' 'glyphicons-halflings';
+  src:url('fonts')
+}
+
+.page-header {
+text-align: center;
+margin: 25px;
+}
+
+p {
+    font-family: 'Courier New Bold'
+
+}
+
+h1 {
+    font-family: 'Bangers'
+}
+
+h4 {
+    font-family: 'Bangers'
+}
+
+h5 {
+    font-family: 'BEBAS___'
+    
+}
+
 body {
     background-color: lightblue;
 }
@@ -11,7 +39,7 @@ body {
 }
 
 #chirp-list {
-    background-color: white;
+    background-color: lightblue;
 }
 
 #user-selector {
@@ -20,4 +48,29 @@ body {
 
 .chirp-box {
     background-color: orange;
+    position: relative;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    line-height: 25px;
 }
+
+.chirp {
+    position: relative;
+    background: rgba(76, 175, 80, 0.3);
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.delete-button {
+    /* position: relative; */
+    left: 950px;
+    bottom: 55px;
+    z-index: 10;
+    right: 0px;
+}
+ 

@@ -6,29 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CHIRP CHIRP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
+
+
 
 </head>
 
-
 <body>
+    <div class="container">
+        <div class="page-header">
+            <h1>My Chirper Project</h1>
+        </div>
 
-    <div class="chirp-box">
-        <select id="user-selector">
+        <div class="chirp-box">
+            <select id="user-selector">
                 <option value="">Select a User</option>
             </select>
-        <input type="text" placeholder="Put your chirp here!" id="chirp-field" size="25">
-        <button type="button" id="chirp-btn">Chirp</button>
-    </div>
-
-    <div id="chirp-list">
-        <div class="chirp">
-            
+            <input type="text" placeholder="Put your chirp here!" id="chirp-field" size="35">
+            <button type="button" id="chirp-btn" disabled >Chirp <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>
         </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="main.js"></script>
+        <div id="chirp-list">
+            <div class="chirp">
+            </div>
+        </div>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+        <script src="main.js"></script>
 </body>
 
 </html>
